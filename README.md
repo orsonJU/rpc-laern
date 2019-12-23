@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 分布式 RPC 框架 - 使用说明
 
 当前版本：1.3.0
@@ -214,3 +215,6 @@ String result = helloService.hello("World"); // 3
 1. 注入 RpcProxy 对象
 2. 调用 RpcProxy 对象的 create 方法来创建 RPC 代理接口
 3. 调用 RPC 代理接口的方法，就像调用远程接口方法一样
+=======
+# rpc-laern
+>>>>>>> origin/master
