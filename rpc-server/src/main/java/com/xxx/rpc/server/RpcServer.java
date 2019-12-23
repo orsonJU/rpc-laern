@@ -82,7 +82,7 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
                     ChannelPipeline pipeline = channel.pipeline();
                     pipeline.addLast(new RpcDecoder(RpcRequest.class)); // 解码 RPC 请求
                     pipeline.addLast(new RpcEncoder(RpcResponse.class)); // 编码 RPC 响应
-                    pipeline.addLast(new RpcServerHandler(handlerMap)); // 处理 RPC 请求
+                    pipeline.addLast(new RpcServerHandler(handlerMap)); // idea 处理 RPC 请求
                 }
             });
             bootstrap.option(ChannelOption.SO_BACKLOG, 1024);
@@ -95,6 +95,7 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
             ChannelFuture future = bootstrap.bind(ip, port).sync();
             // 注册 RPC 服务地址
             if (serviceRegistry != null) {
+                // idea 获取上一步获取的services，并且注册到zookeeper中
                 for (String interfaceName : handlerMap.keySet()) {
                     serviceRegistry.register(interfaceName, serviceAddress);
                     LOGGER.debug("register service: {} => {}", interfaceName, serviceAddress);

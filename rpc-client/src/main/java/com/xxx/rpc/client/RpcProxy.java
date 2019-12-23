@@ -24,6 +24,7 @@ public class RpcProxy {
 
     private String serviceAddress;
 
+    // idea 依赖与服务注册中心
     private ServiceDiscovery serviceDiscovery;
 
     public RpcProxy(String serviceAddress) {
@@ -62,6 +63,7 @@ public class RpcProxy {
                             if (StringUtil.isNotEmpty(serviceVersion)) {
                                 serviceName += "-" + serviceVersion;
                             }
+                            // idea 通过服务注册中心获取对应的服务
                             serviceAddress = serviceDiscovery.discover(serviceName);
                             LOGGER.debug("discover service: {} => {}", serviceName, serviceAddress);
                         }
